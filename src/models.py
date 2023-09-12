@@ -29,9 +29,6 @@ class Personaje(Base):
     nombre = Column(String(250), nullable=False)
     favoritos = relationship("Favorito", back_populates = "personaje")
 
-    def to_dict(self):
-        return {}
-
 class Planeta(Base):
     __tablename__ = 'planeta'
     id = Column(Integer, primary_key=True)
@@ -46,12 +43,12 @@ class Planeta(Base):
 class Favorito(Base):
     __tablename__ = 'favorito'
     id = Column(Integer, primary_key=True)
-    usuario_id = Column(Integer, ForeignKey("usuarios.id"))
-    personaje_id = Column(Integer, ForeignKey("personajes.id"))
-    planeta_id = Column(Integer, ForeignKey("planetas.id"))
-    usuario = relationship("Usuario", back_populates = "favoritos")
-    planeta = relationship("Planeta", back_populates = "favoritos")
-    personaje = relationship("Personaje", back_populates = "favoritos")
+    usuario_id = Column(Integer, ForeignKey("usuario.id"))
+    personaje_id = Column(Integer, ForeignKey("personaje.id"))
+    planeta_id = Column(Integer, ForeignKey("planeta.id"))
+    usuario = relationship("Usuario", back_populates = "favorito")
+    planeta = relationship("Planeta", back_populates = "favorito")
+    personaje = relationship("Personaje", back_populates = "favorito")
     
 
 
